@@ -23,7 +23,7 @@ namespace PhysicsRangeExtender
 
         private void ExtendTerrainDistance()
         {
-            var pqs = FlightGlobals.currentMainBody.pqsController;
+			PQS pqs = FlightGlobals.currentMainBody.pqsController;
             pqs.horizonDistance = PreSettings.GlobalRange * 1000f;
             pqs.maxDetailDistance = PreSettings.GlobalRange * 1000f;
             pqs.minDetailDistance = PreSettings.GlobalRange * 1000f;
@@ -32,7 +32,7 @@ namespace PhysicsRangeExtender
 
             if (!_loading) return;
 
-            using (var v = FlightGlobals.VesselsLoaded.GetEnumerator())
+            using (List<Vessel>.Enumerator v = FlightGlobals.VesselsLoaded.GetEnumerator())
             {
                 while (v.MoveNext())
                 {

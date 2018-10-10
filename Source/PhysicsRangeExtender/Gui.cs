@@ -74,7 +74,7 @@ namespace PhysicsRangeExtender
 
         private void DrawToggleCameraNearClip(float line)
         {
-            var saveRect = new Rect(LeftIndent, ContentTop + line * entryHeight, contentWidth, entryHeight);
+			Rect saveRect = new Rect(LeftIndent, ContentTop + line * entryHeight, contentWidth, entryHeight);
 
 
             if (PhysicsRangeExtender.FlickeringFix)
@@ -91,7 +91,7 @@ namespace PhysicsRangeExtender
 
         private void DrawGlobalVesselRange(float line)
         {
-            var leftLabel = new GUIStyle
+			GUIStyle leftLabel = new GUIStyle
             {
                 alignment = TextAnchor.UpperLeft,
                 normal = {textColor = Color.white}
@@ -100,7 +100,7 @@ namespace PhysicsRangeExtender
             GUI.Label(new Rect(LeftIndent, ContentTop + line * entryHeight, 60, entryHeight), "Global range:",
                 leftLabel);
             float textFieldWidth = 42;
-            var fwdFieldRect = new Rect(LeftIndent + contentWidth - textFieldWidth - 3 * _incrButtonWidth,
+			Rect fwdFieldRect = new Rect(LeftIndent + contentWidth - textFieldWidth - 3 * _incrButtonWidth,
                   ContentTop + line * entryHeight, textFieldWidth, entryHeight);
             _guiGlobalRangeForVessels = GUI.TextField(fwdFieldRect, _guiGlobalRangeForVessels);
           
@@ -108,14 +108,14 @@ namespace PhysicsRangeExtender
 
         private void DrawSaveButton(float line)
         {
-            var saveRect = new Rect(LeftIndent, ContentTop + line * entryHeight, contentWidth / 2, entryHeight);
+			Rect saveRect = new Rect(LeftIndent, ContentTop + line * entryHeight, contentWidth / 2, entryHeight);
             if (GUI.Button(saveRect, "Apply new range"))
                 Apply();
         }
 
         private void DrawForceCheckBox(float line)
         {
-            var saveRect = new Rect(LeftIndent, ContentTop + line * entryHeight, contentWidth , entryHeight);
+			Rect saveRect = new Rect(LeftIndent, ContentTop + line * entryHeight, contentWidth , entryHeight);
 
            
             if (PhysicsRangeExtender.ForceRanges)
@@ -132,7 +132,7 @@ namespace PhysicsRangeExtender
 
         private void Apply()
         {
-            if (int.TryParse(_guiGlobalRangeForVessels, out var parseGlobalRange))
+            if (int.TryParse(_guiGlobalRangeForVessels, out int parseGlobalRange))
             {
                 PreSettings.GlobalRange = parseGlobalRange;
                 _guiGlobalRangeForVessels = PreSettings.GlobalRange.ToString();
@@ -144,12 +144,12 @@ namespace PhysicsRangeExtender
 
         private void DrawTitle()
         {
-            var centerLabel = new GUIStyle
+			GUIStyle centerLabel = new GUIStyle
             {
                 alignment = TextAnchor.UpperCenter,
                 normal = {textColor = Color.white}
             };
-            var titleStyle = new GUIStyle(centerLabel)
+			GUIStyle titleStyle = new GUIStyle(centerLabel)
             {
                 fontSize = 10,
                 alignment = TextAnchor.MiddleCenter

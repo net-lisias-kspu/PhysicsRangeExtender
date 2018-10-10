@@ -1,5 +1,8 @@
 # Physics Range Extender :: Change Log
 
+* 2017-0528: 1.4.0 (jrodrigv) for KSP 1.3
+	+ v1.4.0
+	+ Recompiled for KSP 1.3
 * 2017-0514: 1.3.0 (jrodrigv) for KSP 1.2.X
 	+ v1.3.0
 	+ Added GUI to enable/disable the mod and adjust the ranges

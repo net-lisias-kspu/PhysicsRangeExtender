@@ -183,7 +183,7 @@ namespace PhysicsRangeExtender
 
         public static void UpdateRanges(bool updatingFromUi = false)
         {
-            Debug.Log("[PhysicsRangeExtender]:  Updating ranges");
+            Debug.Log("Updating ranges");
             FloatingOrigin.fetch.threshold = Mathf.Pow(PreSettings.GlobalRange * 1000 * 1.20f, 2);
 
            _globalSituation = new VesselRanges.Situation(
@@ -237,7 +237,7 @@ namespace PhysicsRangeExtender
             }
             catch (Exception e)
             {
-                Debug.Log("[PhysicsRangeExtender]: Failed to Load Physics Distance -" + e);
+                Debug.Log("Failed to Load Physics Distance -" + e);
             }
         }
 

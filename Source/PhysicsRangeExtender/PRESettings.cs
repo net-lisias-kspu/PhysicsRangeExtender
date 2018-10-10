@@ -20,7 +20,7 @@ namespace PhysicsRangeExtender
         {
             try
             {
-                Debug.Log("[PhysicsRangeExtender]: Loading settings.cfg ==");
+                Debug.Log("Loading settings.cfg ==");
 
                 ConfigNode fileNode = ConfigNode.Load(SettingsConfigUrl);
                 if (!fileNode.HasNode("PreSettings")) return;
@@ -30,7 +30,7 @@ namespace PhysicsRangeExtender
             }
             catch (Exception ex)
             {
-                Debug.Log("[PhysicsRangeExtender]: Failed to load settings config:" + ex.Message);
+                Debug.Log("Failed to load settings config:" + ex.Message);
             }
         }
 
@@ -38,7 +38,7 @@ namespace PhysicsRangeExtender
         {
             try
             {
-                Debug.Log("[PhysicsRangeExtender]: Saving settings.cfg ==");
+                Debug.Log("Saving settings.cfg ==");
                 ConfigNode fileNode = ConfigNode.Load(SettingsConfigUrl);
                 if (!fileNode.HasNode("PreSettings")) return;
                 ConfigNode settings = fileNode.GetNode("PreSettings");
@@ -48,7 +48,7 @@ namespace PhysicsRangeExtender
             }
             catch (Exception ex)
             {
-                Debug.Log("[PhysicsRangeExtender]: Failed to save settings config:" + ex.Message); throw;
+                Debug.Log("Failed to save settings config:" + ex.Message); throw;
             }
         }
 

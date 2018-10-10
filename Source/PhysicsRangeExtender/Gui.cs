@@ -171,13 +171,13 @@ namespace PhysicsRangeExtender
         private void EnableGui()
         {
             GuiEnabled = true;
-            Debug.Log("[PhysicsRangeExtender]: Showing PRE GUI");
+            Debug.Log("Showing PRE GUI");
         }
 
         private void DisableGui()
         {
             GuiEnabled = false;
-            Debug.Log("[PhysicsRangeExtender]: Hiding PRE GUI");
+            Debug.Log("Hiding PRE GUI");
         }
 
         private void Dummy()

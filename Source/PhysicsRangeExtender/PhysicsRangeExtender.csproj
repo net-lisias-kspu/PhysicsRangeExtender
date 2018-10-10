@@ -43,6 +43,9 @@
     <Reference Include="UnityEngine">
       <HintPath>..\..\..\..\..\LIB\managed\1.4.1\UnityEngine.dll</HintPath>
     </Reference>
+    <Reference Include="KSPe">
+      <HintPath>..\..\..\..\..\LIB\plugins\KSPe.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Gui.cs" />
@@ -54,6 +57,7 @@
     <Compile Include="Properties\Version.cs">
       <DependentUpon>Version.tt</DependentUpon>
     </Compile>
+    <Compile Include="Debug.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="LocalDev\7za_dir.txt" />

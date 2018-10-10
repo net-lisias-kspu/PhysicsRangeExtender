@@ -35,4 +35,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyFileVersion(PhysicsRangeExtender.Version.Number)]
 [assembly: KSPAssembly("PhysicsRangeExtender", PhysicsRangeExtender.Version.major, PhysicsRangeExtender.Version.minor)]
 
-//[assembly: KSPAssemblyDependency("KSPe", 2, 0)]
+[assembly: KSPAssemblyDependency("KSPe", 2, 0)]

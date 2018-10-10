@@ -1,5 +1,8 @@
 # Physics Range Extender :: Change Log
 
+* 2018-0311: 1.6.0 (jrodrigv) for KSP 1.4
+	+ v1.6.0
+	+ Recompiled and upgraded for KSP 1.4
 * 2017-0916: 1.5.0 (jrodrigv) for KSP 1.3
 	+ Fixes de-orbit vessels when entering Global Range distance.
 	+ Unload landed or splashed vessels to prevent its destruction when the active vessel is about to change its reference frame (from rotation to inertial).

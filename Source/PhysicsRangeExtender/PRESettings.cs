@@ -6,7 +6,8 @@ namespace PhysicsRangeExtender
     [KSPAddon(KSPAddon.Startup.Instantly, false)]
     public class PreSettings : MonoBehaviour
     {
-        public static string SettingsConfigUrl = "GameData/PhysicsRangeExtender/settings.cfg";
+		private static readonly KSPe.PluginConfig SETTINGS = KSPe.PluginConfig.ForType<PhysicsRangeExtender>("PreSettings", "settings.cfg");
+        
         public static int GlobalRange { get; set; } 
 
         public static bool ConfigLoaded { get; set; } = false;
@@ -22,10 +23,7 @@ namespace PhysicsRangeExtender
             {
                 Debug.Log("Loading settings.cfg ==");
 
-                ConfigNode fileNode = ConfigNode.Load(SettingsConfigUrl);
-                if (!fileNode.HasNode("PreSettings")) return;
-
-                ConfigNode settings = fileNode.GetNode("PreSettings");
+				ConfigNode settings = SETTINGS.Load().Node;
                 GlobalRange = int.Parse(settings.GetValue("GlobalRange"));
             }
             catch (Exception ex)
@@ -39,12 +37,10 @@ namespace PhysicsRangeExtender
             try
             {
                 Debug.Log("Saving settings.cfg ==");
-                ConfigNode fileNode = ConfigNode.Load(SettingsConfigUrl);
-                if (!fileNode.HasNode("PreSettings")) return;
-                ConfigNode settings = fileNode.GetNode("PreSettings");
 
+				ConfigNode settings = SETTINGS.Load().Node;
                 settings.SetValue("GlobalRange", GlobalRange);
-                fileNode.Save(SettingsConfigUrl);
+                SETTINGS.Save();
             }
             catch (Exception ex)
             {

@@ -1,0 +1,33 @@
+{
+	"NAME"		: "Physics Range Extender Unofficial",
+	"URL"		: "https://raw.githubusercontent.com/net-lisias-kspu/PhysicsRangeExtender/master/PhysicsRangeExtender.version",
+	"DOWNLOAD"	: "https://github.com/net-lisias-kspu/PhysicsRangeExtender/releases",
+	"CHANGE_LOG"	: "https://raw.githubusercontent.com/net-lisias-kspu/PhysicsRangeExtender/master/CHANGE_LOG.md",
+	"CHANGE_LOG_URL": "https://raw.githubusercontent.com/net-lisias-kspu/PhysicsRangeExtender/master/CHANGES.md",
+	"GITHUB": {
+		"USERNAME"		: "net-lisias-kspu",
+		"REPOSITORY"		: "PhysicsRangeExtender",
+		"ALLOW_PRE_RELEASE"	: false
+		},
+	"VERSION":{
+		"MAJOR":1,
+		"MINOR":7,
+		"PATCH":0,
+		"BUILD":0
+		},
+	"KSP_VERSION":{
+		"MAJOR":1,
+		"MINOR":4,
+		"PATCH":3
+		},
+	"KSP_VERSION_MIN":{
+		"MAJOR":1,
+		"MINOR":4,
+		"PATCH":3
+		},
+	"KSP_VERSION_MAX":{
+		"MAJOR":1,
+		"MINOR":4,
+		"PATCH":99
+		}
+}

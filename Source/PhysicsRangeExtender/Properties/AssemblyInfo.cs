@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("PhysicsRangeExtender")]
-[assembly: AssemblyCopyright("Jesús Rodríguez Valencia")]
+[assembly: AssemblyCopyright("Jesús Rodríguez Valencia; Lisias T")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -31,4 +31,8 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.7.0")]
+[assembly: AssemblyVersion(PhysicsRangeExtender.Version.Number)]
+[assembly: AssemblyFileVersion(PhysicsRangeExtender.Version.Number)]
+[assembly: KSPAssembly("PhysicsRangeExtender", PhysicsRangeExtender.Version.major, PhysicsRangeExtender.Version.minor)]
+
+//[assembly: KSPAssemblyDependency("KSPe", 2, 0)]

@@ -4,11 +4,6 @@
 	"DOWNLOAD"	: "https://github.com/net-lisias-kspu/PhysicsRangeExtender/releases",
 	"CHANGE_LOG"	: "https://raw.githubusercontent.com/net-lisias-kspu/PhysicsRangeExtender/master/CHANGE_LOG.md",
 	"CHANGE_LOG_URL": "https://raw.githubusercontent.com/net-lisias-kspu/PhysicsRangeExtender/master/CHANGES.md",
-	"GITHUB": {
-		"USERNAME"		: "net-lisias-kspu",
-		"REPOSITORY"		: "PhysicsRangeExtender",
-		"ALLOW_PRE_RELEASE"	: false
-		},
 	"VERSION":{
 		"MAJOR":1,
 		"MINOR":8,

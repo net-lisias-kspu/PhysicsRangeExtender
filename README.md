@@ -6,11 +6,11 @@ It extends game physics range, allowing you to switch between vessel that are fa
 ## In a Hurry
 
 * [Latest Release](https://github.com/net-lisias-kspu/PhysicsRangeExtender/releases)
+	+ [Binaries](https://github.com/net-lisias-kspu/PhysicsRangeExtender/tree/Archive)
 * [Source](https://github.com/net-lisias-kspu/PhysicsRangeExtender)
-* [Binaries](https://github.com/net-lisias-kspu/PhysicsRangeExtender/tree/Archive)
 * [Project's README](https://github.com/net-lisias-kspu/PhysicsRangeExtender/blob/master/README.md)
-	+ [Change Log](./CHANGE_LOG.md)
-	+ [TODO](./TODO.md) list
+* [Change Log](./CHANGE_LOG.md)
+* [TODO](./TODO.md) list
 
 
 ## Description

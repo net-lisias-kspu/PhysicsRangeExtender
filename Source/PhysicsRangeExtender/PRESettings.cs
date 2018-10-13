@@ -7,10 +7,11 @@ namespace PhysicsRangeExtender
     public class PreSettings : MonoBehaviour
     {
 		private static readonly KSPe.PluginConfig SETTINGS = KSPe.PluginConfig.ForType<PhysicsRangeExtender>("PreSettings", "settings.cfg");
-        
-        public static int GlobalRange { get; set; } 
-
+        public static int GlobalRange { get; set; }
+        public static bool FlickeringFix { get; set; }
+        public static bool TerrainExtender { get; set; }
         public static bool ConfigLoaded { get; set; } = false;
+
         void Awake()
         {
             LoadConfig();
@@ -21,14 +22,17 @@ namespace PhysicsRangeExtender
         {
             try
             {
-                Debug.Log("Loading settings.cfg ==");
+                Debug.Log("[PhysicsRangeExtender]: Loading settings.cfg ==");
 
 				ConfigNode settings = SETTINGS.Load().Node;
                 GlobalRange = int.Parse(settings.GetValue("GlobalRange"));
+                FlickeringFix = bool.Parse(settings.GetValue("FlickeringFix"));
+                TerrainExtender = bool.Parse(settings.GetValue("TerrainExtender"));
+
             }
             catch (Exception ex)
             {
-                Debug.Log("Failed to load settings config:" + ex.Message);
+                Debug.Log("[PhysicsRangeExtender]: Failed to load settings config:" + ex.Message);
             }
         }
 
@@ -40,11 +44,13 @@ namespace PhysicsRangeExtender
 
 				ConfigNode settings = SETTINGS.Load().Node;
                 settings.SetValue("GlobalRange", GlobalRange);
+                settings.SetValue("FlickeringFix", FlickeringFix);
+                settings.SetValue("TerrainExtender", TerrainExtender);
                 SETTINGS.Save();
             }
             catch (Exception ex)
             {
-                Debug.Log("Failed to save settings config:" + ex.Message); throw;
+                Debug.Log("[PhysicsRangeExtender]: Failed to save settings config:" + ex.Message); throw;
             }
         }
 

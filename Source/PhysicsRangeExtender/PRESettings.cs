@@ -6,11 +6,10 @@ namespace PhysicsRangeExtender
     [KSPAddon(KSPAddon.Startup.Instantly, false)]
     public class PreSettings : MonoBehaviour
     {
-		private static readonly KSPe.PluginConfig SETTINGS = KSPe.PluginConfig.ForType<PhysicsRangeExtender>("PreSettings", "settings.cfg");
+        private static readonly KSPe.PluginConfig SETTINGS = KSPe.PluginConfig.ForType<PhysicsRangeExtender>("PreSettings", "settings.cfg");
         public static int GlobalRange { get; set; }
-        public static bool FlickeringFix { get; set; }
-        public static bool TerrainExtender { get; set; }
         public static bool ConfigLoaded { get; set; } = false;
+        public static bool ModEnabled { get; set; }
 
         void Awake()
         {
@@ -24,10 +23,9 @@ namespace PhysicsRangeExtender
             {
                 Debug.Log("[PhysicsRangeExtender]: Loading settings.cfg ==");
 
-				ConfigNode settings = SETTINGS.Load().Node;
+                ConfigNode settings = SETTINGS.Load().Node;
                 GlobalRange = int.Parse(settings.GetValue("GlobalRange"));
-                FlickeringFix = bool.Parse(settings.GetValue("FlickeringFix"));
-                TerrainExtender = bool.Parse(settings.GetValue("TerrainExtender"));
+                ModEnabled = bool.Parse(settings.GetValue("ModEnabled"));
 
             }
             catch (Exception ex)
@@ -42,10 +40,9 @@ namespace PhysicsRangeExtender
             {
                 Debug.Log("Saving settings.cfg ==");
 
-				ConfigNode settings = SETTINGS.Load().Node;
+                ConfigNode settings = SETTINGS.Load().Node;
                 settings.SetValue("GlobalRange", GlobalRange);
-                settings.SetValue("FlickeringFix", FlickeringFix);
-                settings.SetValue("TerrainExtender", TerrainExtender);
+                settings.SetValue("ModEnabled", ModEnabled);
                 SETTINGS.Save();
             }
             catch (Exception ex)

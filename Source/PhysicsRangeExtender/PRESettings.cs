@@ -8,6 +8,9 @@ namespace PhysicsRangeExtender
     {
         private static readonly KSPe.PluginConfig SETTINGS = KSPe.PluginConfig.ForType<PhysicsRangeExtender>("PreSettings", "settings.cfg");
         public static int GlobalRange { get; set; }
+
+        public static float CamFixMultiplier { get; set; }
+
         public static bool ConfigLoaded { get; set; } = false;
         public static bool ModEnabled { get; set; }
 
@@ -25,6 +28,7 @@ namespace PhysicsRangeExtender
 
                 ConfigNode settings = SETTINGS.Load().Node;
                 GlobalRange = int.Parse(settings.GetValue("GlobalRange"));
+                CamFixMultiplier = float.Parse(settings.GetValue("CamFixMultiplier"));
                 ModEnabled = bool.Parse(settings.GetValue("ModEnabled"));
                 Debug.Log("[PhysicsRangeExtender]: ModEnabled:" + ModEnabled);
             }
@@ -42,6 +46,7 @@ namespace PhysicsRangeExtender
 
                 ConfigNode settings = SETTINGS.Load().Node;
                 settings.SetValue("GlobalRange", GlobalRange);
+                settings.SetValue("CamFixMultiplier", CamFixMultiplier);
                 settings.SetValue("ModEnabled", ModEnabled);
                 SETTINGS.Save();
             }

@@ -6,7 +6,8 @@ namespace PhysicsRangeExtender
     [KSPAddon(KSPAddon.Startup.Instantly, false)]
     public class PreSettings : MonoBehaviour
     {
-        private static readonly KSPe.PluginConfig SETTINGS = KSPe.PluginConfig.ForType<PhysicsRangeExtender>("PreSettings", "settings.cfg");
+        private static readonly KSPe.IO.Data.ConfigNode SETTINGS = KSPe.IO.Data.ConfigNode.ForType<PhysicsRangeExtender>("PreSettings", "settings.cfg");       
+        
         public static int GlobalRange { get; set; }
 
         public static float CamFixMultiplier { get; set; }
@@ -14,7 +15,7 @@ namespace PhysicsRangeExtender
         public static bool ConfigLoaded { get; set; } = false;
         public static bool ModEnabled { get; set; }
 
-        void Awake()
+        public void Awake()
         {
             LoadConfig();
             ConfigLoaded = true;
@@ -22,14 +23,13 @@ namespace PhysicsRangeExtender
 
         public static void LoadConfig()
         {
+            Debug.Log("[PhysicsRangeExtender]: Loading settings.cfg ==");
             try
             {
-                Debug.Log("[PhysicsRangeExtender]: Loading settings.cfg ==");
-
-                ConfigNode settings = SETTINGS.Load().Node;
-                GlobalRange = int.Parse(settings.GetValue("GlobalRange"));
-                CamFixMultiplier = float.Parse(settings.GetValue("CamFixMultiplier"));
-                ModEnabled = bool.Parse(settings.GetValue("ModEnabled"));
+		        KSPe.IO.Asset.ConfigNode defaultSettings = KSPe.IO.Asset.ConfigNode.ForType<PhysicsRangeExtender>("PreSettings", "default.cfg");       
+				LoadConfig(defaultSettings.Load());
+				if (SETTINGS.IsLoadable)
+					LoadConfig(SETTINGS.Load());
                 Debug.Log("[PhysicsRangeExtender]: ModEnabled:" + ModEnabled);
             }
             catch (Exception ex)
@@ -37,14 +37,22 @@ namespace PhysicsRangeExtender
                 Debug.Log("[PhysicsRangeExtender]: Failed to load settings config:" + ex.Message);
             }
         }
+        
+        private static void LoadConfig(KSPe.IO.ReadableConfigNode configNode)
+		{
+			KSPe.ConfigNodeWithSteroids settings = KSPe.ConfigNodeWithSteroids.from(configNode.Node);
+            GlobalRange = settings.GetValue<int>("GlobalRange", GlobalRange);
+            CamFixMultiplier = settings.GetValue<float>("CamFixMultiplier", CamFixMultiplier);
+            ModEnabled = settings.GetValue<bool>("ModEnabled", ModEnabled);
+		}
 
-        public static void SaveConfig()
+		public static void SaveConfig()
         {
             try
             {
                 Debug.Log("Saving settings.cfg ==");
 
-                ConfigNode settings = SETTINGS.Load().Node;
+                ConfigNode settings = SETTINGS.Node;
                 settings.SetValue("GlobalRange", GlobalRange);
                 settings.SetValue("CamFixMultiplier", CamFixMultiplier);
                 settings.SetValue("ModEnabled", ModEnabled);

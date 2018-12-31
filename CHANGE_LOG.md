@@ -1,5 +1,10 @@
 # Physics Range Extender :: Change Log
 
+* 2018-1226: 1.9.0 (jrodrigv) for KSP 1.6.0
+	+ v1.9.0
+	+ Recompiled for KSP 1.6.0
+	+ Added the Cam fix multiplier option so users can tweak the camera distance if they are not happy with the fix.
+	+ (Bear in mind that the camera fix is the only way to prevent the flickering when the active vessel is very far from the floating origin)
 * 2018-1021: 1.8.0 (jrodrigv) for KSP 1.5.1
 	+ v1.8.0
 	+ Recompiled for KSP 1.5.1

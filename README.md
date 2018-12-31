@@ -1,4 +1,4 @@
-# Physics Range Extender Unofficial
+# Physics Range Extender /L Unofficial
 
 It extends game physics range, allowing you to switch between vessel that are far away. Unofficial fork by Lisias.
 
@@ -31,6 +31,7 @@ To install, place the GameData folder inside your Kerbal Space Program folder.
 **REMOVE ANY OLD VERSIONS OF THE PRODUCT BEFORE INSTALLING**.
 
 ### Dependencies
+
 * Hard Dependencies
 	* [KSP API Extensions/L](https://github.com/net-lisias-ksp/KSPAPIExtensions) 2.0 or newer
 <!--
@@ -38,22 +39,23 @@ To install, place the GameData folder inside your Kerbal Space Program folder.
 -->
 
 ### Licensing
+
 This work is DOUBLE LICENSED under the [Unlicense](http://unlicense.org) and [SKL-1.0](https://ksp.lisias.net/SKL-1_0.txt), at your choice when applicable. See [here](./LICENSE).
 
-* Under [Unlicense](http://unlicense.org) (see [here](./UN.LICENSE):
+* Under [Unlicense](http://unlicense.org) (see [here](./LICENSE.UN)):
 	+ You are free to:
 		- Do whatever you want
 	+ Under the following terms:
 		- No conditions added. 
-* Under [SKL 1.0](https://ksp.lisias.net/SKL-1_0.txt) (see [here](./KSPe.SKL-1_0.LICENSE):
-		+ You are free to:
-			- Use : unpack and use the material in any computer or device
-			- Redistribute: redistribute the original package in any medium
-		+ Under the following terms:
-			- You agree to use the material only on (or to) KSP
-			- You don't alter the package in any form or way (but you can embedded it)
-			- You don't change the material in any way, and retain any copyright notices
-			- You must explicitly state the author's Copyright, as well an Official Site for downloading the original and new versions (see above) 
+* Under [SKL 1.0](https://ksp.lisias.net/SKL-1_0.txt) (see [here](./LICENSE.SKL-1_0):
+	+ You are free to:
+		- Use : unpack and use the material in any computer or device
+		- Redistribute: redistribute the original package in any medium
+	+ Under the following terms:
+		- You agree to use the material only on (or to) KSP
+		- You don't alter the package in any form or way (but you can embedded it)
+		- You don't change the material in any way, and retain any copyright notices
+		- You must explicitly state the author's Copyright, as well an Official Site for downloading the original and new versions (see above) 
 
 Please note the copyrights and trademarks in [NOTICE](./NOTICE)
 

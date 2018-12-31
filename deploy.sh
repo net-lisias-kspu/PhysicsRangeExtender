@@ -39,7 +39,7 @@ check
 cp $VERSIONFILE "./GameData/$TARGETDIR"
 cp CHANGE_LOG.md "./GameData/$TARGETDIR/CHANGE_LOG.md"
 cp README.md  "./GameData/$TARGETDIR/README.md"
-cp *LICENSE "./GameData/$TARGETDIR/"
+cp LICENSE* "./GameData/$TARGETDIR/"
 cp NOTICE "./GameData/$TARGETDIR/NOTICE"
 
 for dll in $PACKAGE ; do

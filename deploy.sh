@@ -39,7 +39,6 @@ check
 cp $VERSIONFILE "./GameData/$TARGETDIR"
 cp CHANGE_LOG.md "./GameData/$TARGETDIR/CHANGE_LOG.md"
 cp README.md  "./GameData/$TARGETDIR/README.md"
-cp INSTALL.md "./GameData/"
 cp LICENSE* "./GameData/$TARGETDIR/"
 cp NOTICE "./GameData/$TARGETDIR/NOTICE"
 

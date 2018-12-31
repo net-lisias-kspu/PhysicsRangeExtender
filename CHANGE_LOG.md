@@ -1,5 +1,12 @@
 # Physics Range Extender :: Change Log
 
+* 2018-1021: 1.8.0 (jrodrigv) for KSP 1.5.1
+	+ v1.8.0
+	+ Recompiled for KSP 1.5.1
+	+ Default range reduced to 50 km
+	+ UI simplifed. Removing options that were not used
+	+ Added button to disable de mod.
+	+ Added message to warn the user when the flickering fix is activated.
 * 2018-1010: 1.7.0.1 (Lisias) for KSP 1.4.3
 	+ Adding [KSPe](https://www.github.com/net-lisias-ksp/KSPAPIExtensions) Hard Dependency 
 		- Moving settings file into <KSP_ROOT>/PluginData where God intended it to be.

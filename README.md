@@ -6,11 +6,13 @@ It extends game physics range, allowing you to switch between vessel that are fa
 ## In a Hurry
 
 * [Latest Release](https://github.com/net-lisias-kspu/PhysicsRangeExtender/releases)
-	+ [Binaries](https://github.com/net-lisias-kspu/PhysicsRangeExtender/tree/Archive)
-* [Source](https://github.com/net-lisias-kspu/PhysicsRangeExtender)
-* [Project's README](https://github.com/net-lisias-kspu/PhysicsRangeExtender/blob/master/README.md)
-* [Change Log](./CHANGE_LOG.md)
-* [TODO](./TODO.md) list
+    + [Binaries](https://github.com/net-lisias-kspu/PhysicsRangeExtender/tree/Archive)
+* [Source](https://github.com/net-lisias-kspu/PhysicsRangeExtender/)
+* Documentation	
+	+ [Project's README](https://github.com/net-lisias-kspu/PhysicsRangeExtender/blob/master/README.md)
+	+ [Install Instructions](https://github.com/net-lisias-kspu/PhysicsRangeExtender/blob/master/INSTALL.md)
+	+ [Change Log](./CHANGE_LOG.md)
+	+ [TODO](./TODO.md) list
 
 
 ## Description
@@ -19,24 +21,20 @@ This is a KSP mod based on a piece of code written by BahamutoD for BDArmory and
 
 Basically it extends game physics range(1)! This will allow you to switch between vessel that are far away or even to see an orbital station from a flying plane.
 
-(1) This mod allows to extended the physics range but it will not prevent the consecuences of doing it.
+(1) This mod allows to extended the physics range but it will not prevent the consequences of doing it.
 
 You might experience some of the following effects when the range is extended > 100 km: vessel shaking, lights flickering, phatom forces, landed vessels colliding with the ground, etc.
+
+### Settings file
+
+Embedded on the distribution file there're a `default.cfg` configuration file with default values defined by the Maintainer. This file **is not user serviceable**.
+
+Your settings are saved on `<KSP_ROOT>/PluginData/PhysicsRangeExtender/settings.cfg`. You can edit this file if you want, besides being unnecessary.
 
 
 ## Installation
 
-To install, place the GameData folder inside your Kerbal Space Program folder.
-
-**REMOVE ANY OLD VERSIONS OF THE PRODUCT BEFORE INSTALLING**.
-
-### Dependencies
-
-* Hard Dependencies
-	* [KSP API Extensions/L](https://github.com/net-lisias-ksp/KSPAPIExtensions) 2.0 or newer
-<!--
-	* [Toolbar Control](https://github.com/net-lisias-kspu/ToolbarControl) 0.1.6.15 or newer
--->
+Detailed installation instructions are now on its own file (see the [In a Hurry](#in-a-hurry) section) and on the distribution file.
 
 ### Licensing
 

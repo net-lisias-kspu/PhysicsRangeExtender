@@ -1,5 +1,10 @@
 # Physics Range Extender :: Change Log
 
+* 2018-1231: 1.9.0.1 (Lisias) for KSP >= 1.4.1
+	+ Better user settings handling!
+		- `default.cfg` on the GameData's to incept the settings
+		- `settings.cfg` on the PluginData's to keep the changes.
+	+ Sync'ing with upstream's code.  
 * 2018-1226: 1.9.0 (jrodrigv) for KSP 1.6.0
 	+ v1.9.0
 	+ Recompiled for KSP 1.6.0

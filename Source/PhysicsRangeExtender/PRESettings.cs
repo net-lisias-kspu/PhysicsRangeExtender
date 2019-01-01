@@ -52,10 +52,11 @@ namespace PhysicsRangeExtender
             {
                 Debug.Log("Saving settings.cfg ==");
 
+				SETTINGS.Clear();
                 ConfigNode settings = SETTINGS.Node;
-                settings.SetValue("GlobalRange", GlobalRange);
-                settings.SetValue("CamFixMultiplier", CamFixMultiplier);
-                settings.SetValue("ModEnabled", ModEnabled);
+                settings.SetValue("GlobalRange", GlobalRange, true);
+                settings.SetValue("CamFixMultiplier", CamFixMultiplier, true);
+                settings.SetValue("ModEnabled", ModEnabled, true);
                 SETTINGS.Save();
             }
             catch (Exception ex)

@@ -4,13 +4,13 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("PhysicsRangeExtender")]
+[assembly: AssemblyTitle("Physics Range Extender /L Unleashed")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("PhysicsRangeExtender")]
-[assembly: AssemblyCopyright("Jesús Rodríguez Valencia; Lisias T")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCompany(PhysicsRangeExtender.LegalMamboJambo.Company)]
+[assembly: AssemblyProduct(PhysicsRangeExtender.LegalMamboJambo.Product)]
+[assembly: AssemblyCopyright(PhysicsRangeExtender.LegalMamboJambo.Copyright)]
+[assembly: AssemblyTrademark(PhysicsRangeExtender.LegalMamboJambo.Trademark)]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 

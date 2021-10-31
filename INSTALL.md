@@ -1,4 +1,4 @@
-# Physics Range Extender /L Unofficial
+# Physics Range Extender /L Unleashed
 
 It extends game physics range, allowing you to switch between vessel that are far away. 
 

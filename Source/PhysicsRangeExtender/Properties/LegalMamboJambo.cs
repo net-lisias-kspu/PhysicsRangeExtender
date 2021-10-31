@@ -25,10 +25,11 @@
 */
 namespace PhysicsRangeExtender
 {
-    internal class PqsData
-    {
-        public double HorizonDistance { get; set; }
-        public double VisRadSeaLevelValue { get; set; }
-        public double CollapseSeaLevelValue { get; set; }
-    }
+	public static class LegalMamboJambo
+	{
+		public const string Company = "/L Aerospace/KSP Division";
+		public const string Copyright = "© 2018-2021 LisiasT";
+		public const string Product = "PhysicsRangeExtender";
+		public const string Trademark = "PhysicsRangeExtender™ by jrodriguez, /L Unleashed™ by LisiasT";
+	}
 }

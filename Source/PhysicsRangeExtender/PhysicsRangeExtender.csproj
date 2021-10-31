@@ -57,6 +57,13 @@
     <Compile Include="PRExtensions.cs" />
     <Compile Include="PQSData.cs" />
     <Compile Include="Debug.cs" />
+    <Compile Include="Properties\LegalMamboJambo.cs" />
+    <Compile Include="Properties\Version.cs">
+      <DependentUpon>Version.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Log.cs" />
+    <Compile Include="ToolbarSupport.cs" />
+    <Compile Include="ModuleManagerSupport.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="LocalDev\7za_dir.txt" />

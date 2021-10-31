@@ -34,12 +34,13 @@ namespace PhysicsRangeExtender
         private static readonly KSPe.IO.Data.ConfigNode SETTINGS = KSPe.IO.Data.ConfigNode.ForType<PhysicsRangeExtender>("PreSettings", "settings.cfg");       
         
         public static int GlobalRange { get; set; }
-
+        public static bool FlickeringFixEnabled { get; set; }
+        public static bool TerrainExtenderEnabled { get; set; }
         public static float CamFixMultiplier { get; set; }
 
         public static bool ConfigLoaded { get; set; } = false;
-        public static bool ModEnabled { get; set; }
-        public static bool TerrainExtenderEnabled { get; set; }
+
+        internal static bool ModEnabled => FlickeringFixEnabled || TerrainExtenderEnabled;
 
         void Awake()
         {
@@ -56,7 +57,6 @@ namespace PhysicsRangeExtender
 				LoadConfig(defaultSettings.Load());
 				if (SETTINGS.IsLoadable)
 					LoadConfig(SETTINGS.Load());
-                Debug.Log("[PhysicsRangeExtender]: ModEnabled:" + ModEnabled);
             }
             catch (Exception ex)
             {
@@ -69,7 +69,7 @@ namespace PhysicsRangeExtender
 			KSPe.ConfigNodeWithSteroids settings = KSPe.ConfigNodeWithSteroids.from(configNode.Node);
             GlobalRange = settings.GetValue<int>("GlobalRange", GlobalRange);
             CamFixMultiplier = settings.GetValue<float>("CamFixMultiplier", CamFixMultiplier);
-            ModEnabled = settings.GetValue<bool>("ModEnabled", ModEnabled);
+            FlickeringFixEnabled = settings.GetValue<bool>("ModEnabled", FlickeringFixEnabled);
             TerrainExtenderEnabled = settings.GetValue<bool>("TerrainExtenderEnabled", TerrainExtenderEnabled);
 		}
 
@@ -83,7 +83,7 @@ namespace PhysicsRangeExtender
                 ConfigNode settings = SETTINGS.Node;
                 settings.SetValue("GlobalRange", GlobalRange, true);
                 settings.SetValue("CamFixMultiplier", CamFixMultiplier, true);
-                settings.SetValue("ModEnabled", ModEnabled, true);
+                settings.SetValue("FlickeringFixEnabled", FlickeringFixEnabled, true);
                 settings.SetValue("TerrainExtenderEnabled", TerrainExtenderEnabled, true);
                 SETTINGS.Save();
             }

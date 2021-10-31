@@ -40,7 +40,7 @@ namespace PhysicsRangeExtender
             {
                 Debug.Log("[Physic Range Extender] === Being turned on by " + _modName);
 
-                PreSettings.ModEnabled = true;
+                PreSettings.FlickeringFixEnabled = true;
                 Gui.Fetch.Apply();
                 PreSettings.SaveConfig();
             }
@@ -52,7 +52,7 @@ namespace PhysicsRangeExtender
             {
                 _wasEnabled = true;
                 Debug.Log("[Physic Range Extender] === Being turned off by " + _modName);
-                PreSettings.ModEnabled = false;
+                PreSettings.FlickeringFixEnabled = false;
                 PhysicsRangeExtender.RestoreStockRanges();
                 PreSettings.SaveConfig();
             }

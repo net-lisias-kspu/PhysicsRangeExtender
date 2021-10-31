@@ -84,10 +84,10 @@ namespace PhysicsRangeExtender
         {
             GUI.DragWindow(new Rect(0, 0, WindowWidth, DraggableHeight));
             float line = 0;
-           
 
             DrawTitle();
             line++;
+
             if (PreSettings.ModEnabled)
             {
                 DrawGlobalVesselRange(line);
@@ -97,8 +97,8 @@ namespace PhysicsRangeExtender
                 DrawSaveButton(line);
                 line++;
             }
-            DisableMod(line);
 
+            DisableMod(line);
 
             _windowHeight = ContentTop + line * entryHeight + entryHeight + entryHeight;
             _windowRect.height = _windowHeight;
@@ -109,20 +109,20 @@ namespace PhysicsRangeExtender
             var saveRect = new Rect(LeftIndent, ContentTop + line * entryHeight, contentWidth, entryHeight);
 
 
-            if (PreSettings.ModEnabled)
+            if (!PreSettings.FlickeringFixEnabled)
             {
-                if (GUI.Button(saveRect, "Disable Mod"))
+                if (GUI.Button(saveRect, "Disable flickering fix"))
                 {
-                    PreSettings.ModEnabled = false;
+                    PreSettings.FlickeringFixEnabled = false;
                     PhysicsRangeExtender.RestoreStockRanges();
                     PreSettings.SaveConfig();
                 }
             }
             else
             {
-                if (GUI.Button(saveRect, "Enable Mod"))
+                if (GUI.Button(saveRect, "Enable flickering fix"))
                 {
-                    PreSettings.ModEnabled = true;
+                    PreSettings.FlickeringFixEnabled = true;
                     Apply();
                     PreSettings.SaveConfig();
                 }
@@ -172,7 +172,7 @@ namespace PhysicsRangeExtender
                 Apply();
         }
 
-        private void Apply()
+        internal void Apply()
         {
             if (int.TryParse(_guiGlobalRangeForVessels, out var parseGlobalRange))
             {

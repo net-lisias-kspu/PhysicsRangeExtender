@@ -37,11 +37,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\..\..\..\..\LIB\managed\1.4.1\Assembly-CSharp.dll</HintPath>
-    </Reference>
     <Reference Include="KSPe">
       <HintPath>..\..\..\..\..\..\LIB\plugins\KSPe.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\..\..\..\..\LIB\managed\1.4.1\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine">
       <HintPath>..\..\..\..\..\..\LIB\managed\1.4.1\UnityEngine.dll</HintPath>
@@ -50,13 +51,11 @@
   <ItemGroup>
     <Compile Include="Gui.cs" />
     <Compile Include="PhysicsRangeExtender.cs" />
-    <Compile Include="PQSData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TerrainExtender.cs" />
     <Compile Include="PRESettings.cs" />
-    <Compile Include="Properties\Version.cs">
-      <DependentUpon>Version.tt</DependentUpon>
-    </Compile>
+    <Compile Include="PRExtensions.cs" />
+    <Compile Include="PQSData.cs" />
     <Compile Include="Debug.cs" />
   </ItemGroup>
   <ItemGroup>

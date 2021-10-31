@@ -14,8 +14,9 @@ namespace PhysicsRangeExtender
 
         public static bool ConfigLoaded { get; set; } = false;
         public static bool ModEnabled { get; set; }
+        public static bool TerrainExtenderEnabled { get; set; }
 
-        public void Awake()
+        void Awake()
         {
             LoadConfig();
             ConfigLoaded = true;
@@ -44,9 +45,10 @@ namespace PhysicsRangeExtender
             GlobalRange = settings.GetValue<int>("GlobalRange", GlobalRange);
             CamFixMultiplier = settings.GetValue<float>("CamFixMultiplier", CamFixMultiplier);
             ModEnabled = settings.GetValue<bool>("ModEnabled", ModEnabled);
+            TerrainExtenderEnabled = settings.GetValue<bool>("TerrainExtenderEnabled", TerrainExtenderEnabled);
 		}
 
-		public static void SaveConfig()
+        public static void SaveConfig()
         {
             try
             {
@@ -57,6 +59,7 @@ namespace PhysicsRangeExtender
                 settings.SetValue("GlobalRange", GlobalRange, true);
                 settings.SetValue("CamFixMultiplier", CamFixMultiplier, true);
                 settings.SetValue("ModEnabled", ModEnabled, true);
+                settings.SetValue("TerrainExtenderEnabled", TerrainExtenderEnabled, true);
                 SETTINGS.Save();
             }
             catch (Exception ex)
@@ -64,7 +67,5 @@ namespace PhysicsRangeExtender
                 Debug.Log("[PhysicsRangeExtender]: Failed to save settings config:" + ex.Message); throw;
             }
         }
-
-
     }
 }

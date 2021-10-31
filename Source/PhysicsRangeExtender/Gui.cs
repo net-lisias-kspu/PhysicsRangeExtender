@@ -20,7 +20,7 @@ namespace PhysicsRangeExtender
         private readonly float _incrButtonWidth = 26;
         private readonly float contentWidth = WindowWidth - 2 * LeftIndent;
         private readonly float entryHeight = 20;
-        private float _contentWidth;
+        
         private bool _gameUiToggle;
         private string _guiGlobalRangeForVessels = String.Empty;
 
@@ -44,7 +44,7 @@ namespace PhysicsRangeExtender
             GameEvents.onShowUI.Add(GameUiEnable);
             _gameUiToggle = true;
             _guiGlobalRangeForVessels = PreSettings.GlobalRange.ToString();
-            _guiCamFixMultiplier = PreSettings.CamFixMultiplier.ToString();
+            _guiCamFixMultiplier = PreSettings.CamFixMultiplier.ToString(CultureInfo.InvariantCulture);
         }
 
         // ReSharper disable once InconsistentNaming
@@ -59,7 +59,7 @@ namespace PhysicsRangeExtender
         {
             GUI.DragWindow(new Rect(0, 0, WindowWidth, DraggableHeight));
             float line = 0;
-            _contentWidth = WindowWidth - 2 * LeftIndent;
+           
 
             DrawTitle();
             line++;
@@ -136,7 +136,7 @@ namespace PhysicsRangeExtender
             var fwdFieldRect = new Rect(LeftIndent + contentWidth - textFieldWidth - 3 * _incrButtonWidth,
                 ContentTop + line * entryHeight, textFieldWidth, entryHeight);
 
-           this._guiCamFixMultiplier = GUI.TextField(fwdFieldRect, _guiCamFixMultiplier.ToString());
+           this._guiCamFixMultiplier = GUI.TextField(fwdFieldRect, _guiCamFixMultiplier);
            
         }
 
@@ -158,7 +158,7 @@ namespace PhysicsRangeExtender
             if (float.TryParse(_guiCamFixMultiplier, out var parseCamFix))
             {
                 PreSettings.CamFixMultiplier = parseCamFix;
-                _guiCamFixMultiplier = PreSettings.CamFixMultiplier.ToString();
+                _guiCamFixMultiplier = PreSettings.CamFixMultiplier.ToString(CultureInfo.InvariantCulture);
             }
 
 

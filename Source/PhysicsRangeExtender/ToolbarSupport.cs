@@ -3,7 +3,7 @@
 		© 2018-2021 Lisias T : http://lisias.net <support@lisias.net>
 		© 2017 jrodrigues
 
-	CrewLight is double licensed, as follows:
+	Physics Range Extender is double licensed, as follows:
 
 		* SKL 1.0 : https://ksp.lisias.net/SKL-1_0.txt
 		* GPL 2.0 : https://www.gnu.org/licenses/gpl-2.0.txt
@@ -24,38 +24,26 @@
 
 */
 using System.Collections.Generic;
-using System;
-using UniLinq;
+
 using UnityEngine;
+using KSP.UI.Screens;
+
+using KSPe.Annotations;
+using Toolbar = KSPe.UI.Toolbar;
+using GUI = KSPe.UI.GUI;
+using GUILayout = KSPe.UI.GUILayout;
 
 namespace PhysicsRangeExtender
 {
-    public static class PRExtensions
-    {
-        public static bool _wasEnabled = false;
+	[KSPAddon(KSPAddon.Startup.MainMenu, true)]
+	public class ToolbarController : MonoBehaviour
+	{
+		internal static KSPe.UI.Toolbar.Toolbar Instance => KSPe.UI.Toolbar.Controller.Instance.Get<ToolbarController>();
 
-        public static void PreOn(string _modName)
-        {
-            if (!PreSettings.ModEnabled && _wasEnabled)
-            {
-                Log.trace("=== Being turned on by " + _modName);
-
-                PreSettings.FlickeringFixEnabled = true;
-                Gui.Fetch.Apply();
-                PreSettings.SaveConfig();
-            }
-        }
-
-        public static void PreOff(string _modName)
-        {
-            if (PreSettings.ModEnabled)
-            {
-                _wasEnabled = true;
-                Log.trace("=== Being turned off by " + _modName);
-                PreSettings.FlickeringFixEnabled = false;
-                PhysicsRangeExtender.RestoreStockRanges();
-                PreSettings.SaveConfig();
-            }
-        }
-    }
+		[UsedImplicitly]
+		private void Start()
+		{
+			KSPe.UI.Toolbar.Controller.Instance.Register<ToolbarController>(Version.FriendlyName);
+		}
+	}
 }

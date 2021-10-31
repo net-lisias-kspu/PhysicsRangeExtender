@@ -25,8 +25,17 @@
 */
 using System;
 using System.Globalization;
-using KSP.UI.Screens;
 using UnityEngine;
+
+using KSP.UI.Screens;
+
+using Asset = KSPe.IO.Asset<PhysicsRangeExtender.Startup>;
+
+using Toolbar = KSPe.UI.Toolbar;
+using GUI = KSPe.UI.GUI;
+using GUILayout = KSPe.UI.GUILayout;
+using KSPe.Annotations;
+
 
 // ReSharper disable NotAccessedField.Local
 
@@ -40,8 +49,8 @@ namespace PhysicsRangeExtender
         private const float LeftIndent = 12;
         private const float ContentTop = 20;
         public static Gui Fetch;
+        private Toolbar.Button button = null;
         public static bool GuiEnabled;
-        public static bool HasAddedButton;
         private readonly float _incrButtonWidth = 26;
         private readonly float contentWidth = WindowWidth - 2 * LeftIndent;
         private readonly float entryHeight = 20;
@@ -53,6 +62,7 @@ namespace PhysicsRangeExtender
         private Rect _windowRect;
         private string _guiCamFixMultiplier;
 
+        [UsedImplicitly]
         private void Awake()
         {
             if (Fetch)
@@ -61,18 +71,27 @@ namespace PhysicsRangeExtender
             Fetch = this;
         }
 
+        [UsedImplicitly]
         private void Start()
         {
             _windowRect = new Rect(Screen.width - WindowWidth - 40, 100, WindowWidth, _windowHeight);
-            AddToolbarButton();
-            GameEvents.onHideUI.Add(GameUiDisable);
-            GameEvents.onShowUI.Add(GameUiEnable);
+            this.AddToolbarButton();
+            GameEvents.onHideUI.Add(this.GameUiDisable);
+            GameEvents.onShowUI.Add(this.GameUiEnable);
             _gameUiToggle = true;
             _guiGlobalRangeForVessels = PreSettings.GlobalRange.ToString();
             _guiCamFixMultiplier = PreSettings.CamFixMultiplier.ToString(CultureInfo.InvariantCulture);
         }
 
-        // ReSharper disable once InconsistentNaming
+        [UsedImplicitly]
+        private void OnDestroy()
+        {
+            ToolbarController.Instance.Destroy();
+            GameEvents.onHideUI.Remove(this.GameUiDisable);
+            GameEvents.onShowUI.Remove(this.GameUiEnable);
+        }
+
+        [UsedImplicitly]
         private void OnGUI()
         {
             if (!PreSettings.ConfigLoaded) return;
@@ -208,29 +227,29 @@ namespace PhysicsRangeExtender
 
         private void AddToolbarButton()
         {
-            if (!HasAddedButton)
+            if (null == this.button)
             {
-                Texture buttonTexture = GameDatabase.Instance.GetTexture("PhysicsRangeExtender/Textures/icon", false);
-                ApplicationLauncher.Instance.AddModApplication(EnableGui, DisableGui, Dummy, Dummy, Dummy, Dummy,
-                    ApplicationLauncher.AppScenes.ALWAYS, buttonTexture);
-                HasAddedButton = true;
+                Texture2D buttonTexture = Asset.Texture2D.LoadFromFile("Textures", "icon");
+                this.button = Toolbar.Button.Create(this
+                        , ApplicationLauncher.AppScenes.ALWAYS
+                        , buttonTexture, buttonTexture
+                        , Version.FriendlyName
+                    );
+                this.button.Toolbar.Add(Toolbar.Button.ToolbarEvents.Kind.Active, new Toolbar.Button.Event(this.EnableGui, this.DisableGui));
+                ToolbarController.Instance.Add(this.button);
             }
         }
 
         private void EnableGui()
         {
             GuiEnabled = true;
-            Debug.Log("[PhysicsRangeExtender]: Showing PRE GUI");
+            Log.trace("Showing PRE GUI");
         }
 
         private void DisableGui()
         {
             GuiEnabled = false;
-            Debug.Log("[PhysicsRangeExtender]: Hiding PRE GUI");
-        }
-
-        private void Dummy()
-        {
+            Log.trace("Hiding PRE GUI");
         }
 
         private void GameUiEnable()

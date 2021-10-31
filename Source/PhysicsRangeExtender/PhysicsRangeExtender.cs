@@ -78,7 +78,7 @@ namespace PhysicsRangeExtender
             else if (_isSuborbital && data.to == Vessel.Situations.FLYING)
             {
                 _isSuborbital = false;
-                Debug.Log("[PhysicsRangeExtender]: Calling StartUpSphere() to prevent missing PQ tiles");
+                Log.trace("Calling StartUpSphere() to prevent missing PQ tiles");
                 curVessel.mainBody.pqsController.StartUpSphere();
             }
         }
@@ -277,7 +277,7 @@ namespace PhysicsRangeExtender
 
         public static void UpdateRanges(bool updatingFromUi = false)
         {
-            Debug.Log("[PhysicsRangeExtender]:  Updating ranges");
+            Log.trace(" Updating ranges");
             FloatingOrigin.fetch.threshold = Mathf.Pow(PreSettings.GlobalRange * 1000 * 1.20f, 2);
 
             if (updatingFromUi) TerrainExtender.UpdateSphere();
@@ -320,7 +320,7 @@ namespace PhysicsRangeExtender
             }
             catch (Exception e)
             {
-                Debug.Log("[PhysicsRangeExtender]: Failed to Load Physics Distance -" + e);
+                Log.trace("Failed to Load Physics Distance -" + e);
             }
         }
 
@@ -347,7 +347,7 @@ namespace PhysicsRangeExtender
             }
             catch (Exception e)
             {
-                Debug.Log("[PhysicsRangeExtender]: Failed to Load Physics Distance -" + e);
+                Log.trace("Failed to Load Physics Distance -" + e);
             }
         }
     }

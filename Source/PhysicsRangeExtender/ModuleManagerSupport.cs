@@ -23,23 +23,16 @@
 	If not, see <https://www.gnu.org/licenses/>.
 
 */
-using System;
-using UnityEngine;
+using System.Collections.Generic;
 
 namespace PhysicsRangeExtender
 {
-	public static class Debug
+	public static class ModuleManagerSupport
 	{
-		private static readonly KSPe.Util.Log.Logger log = KSPe.Util.Log.Logger.CreateForType<PhysicsRangeExtender>();
-		
-		public static void Log(string msg)
+		public static IEnumerable<string> ModuleManagerAddToModList()
 		{
-			log.info(msg);
-		}
-		
-		public static void LogError(string msg)
-		{
-			log.error(msg);
+			string[] r = {typeof(ModuleManagerSupport).Namespace};
+			return r;
 		}
 	}
 }

@@ -50,7 +50,7 @@ namespace PhysicsRangeExtender
 
         public static void LoadConfig()
         {
-            Debug.Log("[PhysicsRangeExtender]: Loading settings.cfg ==");
+            Log.trace("Loading settings.cfg ==");
             try
             {
 		        KSPe.IO.Asset.ConfigNode defaultSettings = KSPe.IO.Asset.ConfigNode.ForType<PhysicsRangeExtender>("PreSettings", "default.cfg");       
@@ -60,7 +60,7 @@ namespace PhysicsRangeExtender
             }
             catch (Exception ex)
             {
-                Debug.Log("[PhysicsRangeExtender]: Failed to load settings config:" + ex.Message);
+                Log.trace("Failed to load settings config:" + ex.Message);
             }
         }
         
@@ -77,7 +77,7 @@ namespace PhysicsRangeExtender
         {
             try
             {
-                Debug.Log("Saving settings.cfg ==");
+                Log.trace("Saving settings.cfg ==");
 
 				SETTINGS.Clear();
                 ConfigNode settings = SETTINGS.Node;
@@ -89,7 +89,7 @@ namespace PhysicsRangeExtender
             }
             catch (Exception ex)
             {
-                Debug.Log("[PhysicsRangeExtender]: Failed to save settings config:" + ex.Message); throw;
+                Log.trace("Failed to save settings config:" + ex.Message); throw;
             }
         }
     }

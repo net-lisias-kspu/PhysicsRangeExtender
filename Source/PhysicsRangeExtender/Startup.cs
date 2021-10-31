@@ -3,7 +3,7 @@
 		© 2018-2021 Lisias T : http://lisias.net <support@lisias.net>
 		© 2017 jrodrigues
 
-	CrewLight is double licensed, as follows:
+	Physics Range Extender is double licensed, as follows:
 
 		* SKL 1.0 : https://ksp.lisias.net/SKL-1_0.txt
 		* GPL 2.0 : https://www.gnu.org/licenses/gpl-2.0.txt
@@ -23,38 +23,25 @@
 	If not, see <https://www.gnu.org/licenses/>.
 
 */
-using System.Collections.Generic;
-using System;
-using UniLinq;
 using UnityEngine;
 
 namespace PhysicsRangeExtender
 {
-    public static class PRExtensions
+    [KSPAddon(KSPAddon.Startup.Instantly, true)]
+    internal class Startup : MonoBehaviour
     {
-        public static bool _wasEnabled = false;
-
-        public static void PreOn(string _modName)
+        private void Start()
         {
-            if (!PreSettings.ModEnabled && _wasEnabled)
-            {
-                Log.trace("=== Being turned on by " + _modName);
+            Log.force("Version {0}", Version.Text);
 
-                PreSettings.FlickeringFixEnabled = true;
-                Gui.Fetch.Apply();
-                PreSettings.SaveConfig();
+            try
+            {
+                KSPe.Util.Installation.Check<Startup>();
             }
-        }
-
-        public static void PreOff(string _modName)
-        {
-            if (PreSettings.ModEnabled)
+            catch (KSPe.Util.InstallmentException e)
             {
-                _wasEnabled = true;
-                Log.trace("=== Being turned off by " + _modName);
-                PreSettings.FlickeringFixEnabled = false;
-                PhysicsRangeExtender.RestoreStockRanges();
-                PreSettings.SaveConfig();
+                Log.error(e, this);
+                KSPe.Common.Dialogs.ShowStopperAlertBox.Show(e);
             }
         }
     }

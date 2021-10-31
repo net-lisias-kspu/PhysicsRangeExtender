@@ -26,6 +26,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using KSPe.Annotations;
 using UnityEngine;
 
 namespace PhysicsRangeExtender
@@ -131,7 +132,7 @@ namespace PhysicsRangeExtender
                             currentVesselData.LandedState = LandedVesselsStates.Focused;
                         }
 
-                        currentVessel.SetPosition(currentVesselData.InitialPosition + currentVessel.up.normalized * currentVessel.vesselSize.magnitude);
+                        currentVessel.SetPosition(currentVesselData.InitialPosition + currentVessel.up.normalized * CalculateVesselSize(currentVessel));
                         currentVessel.SetWorldVelocity(Vector3.zero);
                         break;
                     case LandedVesselsStates.Focusing:
@@ -145,12 +146,13 @@ namespace PhysicsRangeExtender
                                 vesselLandedState.LandedState = LandedVesselsStates.Focused;
                             }
                         }
-                        currentVessel.SetPosition(currentVesselData.InitialPosition + currentVessel.up.normalized * currentVessel.vesselSize.magnitude);
+
+                        currentVessel.SetPosition(currentVesselData.InitialPosition + currentVessel.up.normalized * CalculateVesselSize(currentVessel));
                         currentVessel.SetWorldVelocity(Vector3.zero);
                         break;
                     case LandedVesselsStates.Focused:
 
-                        currentVessel.SetPosition(currentVesselData.InitialPosition + currentVessel.up.normalized * currentVessel.vesselSize.magnitude);
+                        currentVessel.SetPosition(currentVesselData.InitialPosition + currentVessel.up.normalized * CalculateVesselSize(currentVessel));
                         currentVessel.SetWorldVelocity(Vector3.zero);
                         currentVessel.UpdateLandedSplashed();
                             currentVesselData.LandedState = LandedVesselsStates.Lifted;
@@ -195,7 +197,7 @@ namespace PhysicsRangeExtender
             }
         }
 
-        private static void MakingVesselPartsIndestructible(Vessel currentVessel)
+		private static void MakingVesselPartsIndestructible(Vessel currentVessel)
         {
             foreach (var currentVesselPart in currentVessel.parts)
             {
@@ -297,9 +299,6 @@ namespace PhysicsRangeExtender
 
             _initialLoading = true;
         }
-   
-
-       
 
         public static void ActivateNoCrashDamage()
         {
@@ -326,5 +325,51 @@ namespace PhysicsRangeExtender
 
             public Vector3d InitialPosition { get; set; }
         }
+
+#if !KSP_15
+		private static readonly Dictionary<Guid, float> VESSEL_SIZES = new Dictionary<Guid, float>();
+
+		[UsedImplicitly]
+		private void Awake()
+		{
+			VESSEL_SIZES.Clear();
+			GameEvents.onVesselDestroy.Add(this.OnVesselDestroy);
+			GameEvents.onVesselChange.Add(this.OnVesselChange);
+		}
+
+		[UsedImplicitly]
+		private void OnDestroy()
+		{
+			GameEvents.onVesselChange.Remove(this.OnVesselChange);
+			GameEvents.onVesselDestroy.Remove(this.OnVesselDestroy);
+			VESSEL_SIZES.Clear();
+		}
+
+		private void OnVesselChange(Vessel vessel)
+		{
+			VESSEL_SIZES.Remove(vessel.id);
+		}
+
+		private void OnVesselDestroy(Vessel vessel)
+		{
+			VESSEL_SIZES.Remove(vessel.id);
+		}
+
+		private float CalculateVesselSize(Vessel vessel)
+		{
+			if (!VESSEL_SIZES.ContainsKey(vessel.id)) return VESSEL_SIZES[vessel.id];
+
+			List<Bounds> list = new List<Bounds>(vessel.Parts.Count);
+			foreach (Part p in vessel.Parts)
+				list.Add(PartGeometryUtil.GetPartRendererBound(p));
+			Bounds b = PartGeometryUtil.MergeBounds(list.ToArray(), vessel.transform);
+			return VESSEL_SIZES[vessel.id] = b.size.magnitude;
+		}
+#else
+		private float CalculateVesselSize(Vessel vessel)
+		{
+			return vessel.vesselSize.magnitude;
+		}
+#endif
     }
 }

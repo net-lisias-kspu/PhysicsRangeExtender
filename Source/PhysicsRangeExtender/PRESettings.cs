@@ -40,8 +40,6 @@ namespace PhysicsRangeExtender
 
         public static bool ConfigLoaded { get; set; } = false;
 
-        internal static bool ModEnabled => FlickeringFixEnabled || TerrainExtenderEnabled;
-
         void Awake()
         {
             LoadConfig();

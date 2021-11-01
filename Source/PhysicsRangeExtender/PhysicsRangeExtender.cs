@@ -48,7 +48,7 @@ namespace PhysicsRangeExtender
         private void Start()
         {
             if (!PreSettings.ConfigLoaded) return;
-            if (!PreSettings.ModEnabled) return;
+            if (!PreSettings.FlickeringFixEnabled) return;
 
             TerrainExtender.UpdateSphere();
             UpdateRanges();
@@ -92,7 +92,7 @@ namespace PhysicsRangeExtender
         private void OnDestroy()
         {
             if (!PreSettings.ConfigLoaded) return;
-            if (!PreSettings.ModEnabled) return;
+            if (!PreSettings.FlickeringFixEnabled) return;
             GameEvents.onVesselCreate.Remove(ApplyPhysRange);
             GameEvents.onVesselLoaded.Remove(ApplyPhysRangeOnLoad);
             GameEvents.onVesselSwitching.Remove(ApplyPhysRange);
@@ -140,7 +140,7 @@ namespace PhysicsRangeExtender
 
         private void Update()
         {
-            if (!PreSettings.ModEnabled) return;
+            if (!PreSettings.FlickeringFixEnabled) return;
             UpdateNearClipPlane();
             AvoidReferenceFrameChangeIssues();
             FreezeLandedVesselWhenSwitching();
@@ -176,7 +176,7 @@ namespace PhysicsRangeExtender
         private void LateUpdate()
         {
             if (!PreSettings.ConfigLoaded) return;
-            if (!PreSettings.ModEnabled) return;
+            if (!PreSettings.FlickeringFixEnabled) return;
             UpdateNearClipPlane();
             AvoidReferenceFrameChangeIssues();
             FreezeLandedVesselWhenSwitching();
@@ -185,7 +185,7 @@ namespace PhysicsRangeExtender
         private void FixedUpdate()
         {
             if (!PreSettings.ConfigLoaded) return;
-            if (!PreSettings.ModEnabled) return;
+            if (!PreSettings.FlickeringFixEnabled) return;
             UpdateNearClipPlane();
             AvoidReferenceFrameChangeIssues();
             FreezeLandedVesselWhenSwitching();
@@ -303,7 +303,7 @@ namespace PhysicsRangeExtender
 
         private static void ApplyRangesToVessels(bool updatingFromUi = false)
         {
-            if (!PreSettings.ModEnabled) return;
+            if (!PreSettings.TerrainExtenderEnabled) return;
             try
             {
                 int vesselsCount = FlightGlobals.Vessels.Count;

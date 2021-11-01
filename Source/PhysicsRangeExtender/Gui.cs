@@ -104,30 +104,24 @@ namespace PhysicsRangeExtender
             GUI.DragWindow(new Rect(0, 0, WindowWidth, DraggableHeight));
             float line = 0;
 
-            DrawTitle();
-            line++;
+            DrawTitle();                    line++;
 
-            if (PreSettings.ModEnabled)
-            {
-                DrawGlobalVesselRange(line);
-                line++;
-                DrawCamFixMultiplier(line);
-                line++;
-                DrawSaveButton(line);
-                line++;
-            }
+            DrawGlobalVesselRange(line);    line++;
+            DrawCamFixMultiplier(line);     line++;
+            DrawSaveButton(line);           line++;
 
-            DisableMod(line);
+            FlickeringFixSettings(line);    line++;
+            TerrainExtenderSettings(line);  line++;
 
             _windowHeight = ContentTop + line * entryHeight + entryHeight + entryHeight;
             _windowRect.height = _windowHeight;
         }
 
-        private void DisableMod(float line)
+        private void FlickeringFixSettings(float line)
         {
             Rect saveRect = new Rect(LeftIndent, ContentTop + line * entryHeight, contentWidth, entryHeight);
 
-            if (!PreSettings.FlickeringFixEnabled)
+            if (PreSettings.FlickeringFixEnabled)
             {
                 if (GUI.Button(saveRect, "Disable flickering fix"))
                 {
@@ -147,6 +141,29 @@ namespace PhysicsRangeExtender
             }
         }
 
+		private void TerrainExtenderSettings(float line)
+		{
+			Rect saveRect = new Rect(LeftIndent, ContentTop + line * entryHeight, contentWidth, entryHeight);
+
+			if (PreSettings.FlickeringFixEnabled)
+			{
+				if (GUI.Button(saveRect, "Disable Terrain Extender"))
+				{
+					PreSettings.TerrainExtenderEnabled = false;
+					PhysicsRangeExtender.RestoreStockRanges();
+					PreSettings.SaveConfig();
+				}
+			}
+			else
+			{
+				if (GUI.Button(saveRect, "Enable Terrain Extender"))
+				{
+					PreSettings.TerrainExtenderEnabled = true;
+					Apply();
+					PreSettings.SaveConfig();
+				}
+			}
+		}
 
         private void DrawGlobalVesselRange(float line)
         {

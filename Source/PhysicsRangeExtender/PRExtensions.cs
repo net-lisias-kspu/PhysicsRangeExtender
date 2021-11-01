@@ -36,7 +36,7 @@ namespace PhysicsRangeExtender
 
         public static void PreOn(string _modName)
         {
-            if (!PreSettings.ModEnabled && _wasEnabled)
+            if (!PreSettings.FlickeringFixEnabled && _wasEnabled)
             {
                 Log.trace("=== Being turned on by " + _modName);
 
@@ -48,7 +48,7 @@ namespace PhysicsRangeExtender
 
         public static void PreOff(string _modName)
         {
-            if (PreSettings.ModEnabled)
+            if (PreSettings.FlickeringFixEnabled)
             {
                 _wasEnabled = true;
                 Log.trace("=== Being turned off by " + _modName);

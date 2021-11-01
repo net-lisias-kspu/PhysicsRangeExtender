@@ -69,7 +69,7 @@ namespace PhysicsRangeExtender
         private void FixedUpdate()
         {
             if (!PreSettings.ConfigLoaded) return;
-            if (!PreSettings.ModEnabled) return;
+            if (!PreSettings.FlickeringFixEnabled) return;
             if (!PreSettings.TerrainExtenderEnabled) return;
             if (!FlightGlobals.ready) return;
             if (FlightGlobals.currentMainBody == null) return;
@@ -230,7 +230,6 @@ namespace PhysicsRangeExtender
         private void Update()
         {
             if (!PreSettings.ConfigLoaded) return;
-            if (!PreSettings.ModEnabled) return;
             if (!PreSettings.TerrainExtenderEnabled) return;
 
             ShowMessageTerrainStatus();
@@ -294,7 +293,6 @@ namespace PhysicsRangeExtender
 
         private void Start()
         {
-            if (!PreSettings.ModEnabled) return;
             if (!PreSettings.TerrainExtenderEnabled) return;
 
             _initialLoading = true;

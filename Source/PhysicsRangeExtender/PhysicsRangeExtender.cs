@@ -68,7 +68,7 @@ namespace PhysicsRangeExtender
 
         private void RefreshPqsWhenApproaching(GameEvents.HostedFromToAction<Vessel, Vessel.Situations> data)
         {
-            var curVessel = data.host;
+            Vessel curVessel = data.host;
             if (!curVessel.mainBody.isHomeWorld || !curVessel.isActiveVessel) return;
 
             if (data.from == Vessel.Situations.FLYING && data.to == Vessel.Situations.SUB_ORBITAL)
@@ -151,7 +151,7 @@ namespace PhysicsRangeExtender
             if (FlightGlobals.VesselsLoaded.Count > 1 &&
                 FlightGlobals.VesselsLoaded.Count(TerrainExtender.SortaLanded) >= 1)
             {
-                var distanceMultiplier =
+                float distanceMultiplier =
                     _initialClippingPlane *
                     (FlightGlobals.ActiveVessel.transform.position.sqrMagnitude / (4000f * 4000f)) *
                     PreSettings.CamFixMultiplier;
@@ -224,7 +224,7 @@ namespace PhysicsRangeExtender
         /// <returns> if landed vessel should be loaded</returns>
         private static bool ShouldLandedVesselsBeLoaded()
         {
-            var safetyMargin = 0.90f;
+            float safetyMargin = 0.90f;
 
             if (FlightGlobals.ActiveVessel == null ||
                 FlightGlobals.ActiveVessel.LandedOrSplashed ||
@@ -232,7 +232,7 @@ namespace PhysicsRangeExtender
                 FlightGlobals.ActiveVessel.orbit.referenceBody == null)
                 return true;
 
-            var altitudeAtPos =
+            double altitudeAtPos =
                 (double)FlightGlobals.getAltitudeAtPos(FlightGlobals.ActiveVessel.transform.position,
                     FlightGlobals.ActiveVessel.orbit.referenceBody);
 
@@ -247,20 +247,20 @@ namespace PhysicsRangeExtender
         /// </summary>
         private void UnloadLandedVessels()
         {
-            var vesselsCount = FlightGlobals.VesselsLoaded.Count;
+            int vesselsCount = FlightGlobals.VesselsLoaded.Count;
             ScreenMessages.PostScreenMessage(
                 "[PhysicsRangeExtender] Unloading landed vessels during active orbital fly.", 3f,
                 ScreenMessageStyle.UPPER_CENTER);
-            for (var i = 0; i < vesselsCount; i++)
+            for (int i = 0; i < vesselsCount; i++)
                 if (FlightGlobals.VesselsLoaded[i].LandedOrSplashed)
                 {
-                    var safeSituation = new VesselRanges.Situation(
+                    VesselRanges.Situation safeSituation = new VesselRanges.Situation(
                         FlightGlobals.ActiveVessel.orbit.referenceBody.inverseRotThresholdAltitude * 0.90f,
                         FlightGlobals.ActiveVessel.orbit.referenceBody.inverseRotThresholdAltitude * 0.95f,
                         FlightGlobals.ActiveVessel.orbit.referenceBody.inverseRotThresholdAltitude * 1.10f,
                         FlightGlobals.ActiveVessel.orbit.referenceBody.inverseRotThresholdAltitude * 0.99f);
 
-                    var newRanges = new VesselRanges
+                    VesselRanges newRanges = new VesselRanges
                     {
                         escaping = _globalSituation,
                         flying = _globalSituation,
@@ -306,9 +306,9 @@ namespace PhysicsRangeExtender
             if (!PreSettings.ModEnabled) return;
             try
             {
-                var vesselsCount = FlightGlobals.Vessels.Count;
+                int vesselsCount = FlightGlobals.Vessels.Count;
 
-                for (var i = 0; i < vesselsCount; i++)
+                for (int i = 0; i < vesselsCount; i++)
                 {
                     // check to avoid landed vessels to be destroyed when the active vessel is sub-orbital
                     if (FlightGlobals.Vessels[i].LandedOrSplashed && !ShouldLandedVesselsBeLoaded()) continue;
@@ -341,9 +341,9 @@ namespace PhysicsRangeExtender
             try
             {
                 FlightCamera.fetch.mainCamera.nearClipPlane = _initialClippingPlane;
-                var vesselsCount = FlightGlobals.Vessels.Count;
+                int vesselsCount = FlightGlobals.Vessels.Count;
 
-                for (var i = 0; i < vesselsCount; i++) FlightGlobals.Vessels[i].vesselRanges = new VesselRanges();
+                for (int i = 0; i < vesselsCount; i++) FlightGlobals.Vessels[i].vesselRanges = new VesselRanges();
             }
             catch (Exception e)
             {

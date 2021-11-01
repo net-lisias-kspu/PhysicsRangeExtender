@@ -53,7 +53,7 @@ namespace PhysicsRangeExtender
 
         public static void UpdateSphere()
         {
-            var pqs = FlightGlobals.currentMainBody.pqsController;
+            PQS pqs = FlightGlobals.currentMainBody.pqsController;
 
             pqs.detailAltitudeMax = Mathf.Max(PreSettings.GlobalRange * 1000f, 100000);
             pqs.visRadAltitudeMax = Mathf.Max(PreSettings.GlobalRange * 1000f, 100000);
@@ -95,9 +95,9 @@ namespace PhysicsRangeExtender
                 _tvel = FlightGlobals.ActiveVessel;
             }
 
-            foreach (var currentVesselData in VesselsLandedToLoad)
+            foreach (VesselLandedState currentVesselData in VesselsLandedToLoad)
             {
-                var currentVessel = currentVesselData.Vessel;
+                Vessel currentVessel = currentVesselData.Vessel;
 
                 if (currentVessel == null) continue;
                 if (!SortaLanded(currentVessel)) continue;
@@ -141,7 +141,7 @@ namespace PhysicsRangeExtender
                         {
                             currentVesselData.LandedState = LandedVesselsStates.Focused;
 
-                            foreach (var vesselLandedState in VesselsLandedToLoad.Where(x =>x.LandedState == LandedVesselsStates.NotFocused && Vector3.Distance(currentVessel.CoM, x.Vessel.CoM) < 2500))
+                            foreach (VesselLandedState vesselLandedState in VesselsLandedToLoad.Where(x =>x.LandedState == LandedVesselsStates.NotFocused && Vector3.Distance(currentVessel.CoM, x.Vessel.CoM) < 2500))
                             {
                                 vesselLandedState.LandedState = LandedVesselsStates.Focused;
                             }
@@ -199,7 +199,7 @@ namespace PhysicsRangeExtender
 
 		private static void MakingVesselPartsIndestructible(Vessel currentVessel)
         {
-            foreach (var currentVesselPart in currentVessel.parts)
+            foreach (Part currentVesselPart in currentVessel.parts)
             {
                 currentVesselPart.crashTolerance = Math.Max(currentVesselPart.crashTolerance, 1000);
             }
@@ -209,7 +209,7 @@ namespace PhysicsRangeExtender
         {
             if (_initialLoading && FlightGlobals.VesselsLoaded.Count >= 1)
             {
-                foreach (var vessel in FlightGlobals.VesselsLoaded)
+                foreach (Vessel vessel in FlightGlobals.VesselsLoaded)
                 {
                     if (vessel.isActiveVessel) continue;
 
@@ -240,7 +240,7 @@ namespace PhysicsRangeExtender
         {
             if (VesselsLandedToLoad.Count == 0) return;
 
-            var overallStatus = LandedVesselsStates.NotFocused;
+            LandedVesselsStates overallStatus = LandedVesselsStates.NotFocused;
 
             if (VesselsLandedToLoad.Any(x => x.LandedState == LandedVesselsStates.NotFocused))
                 overallStatus = LandedVesselsStates.NotFocused;

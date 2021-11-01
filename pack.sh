@@ -10,11 +10,11 @@ clean() {
 	fi
 }
 
-FILE=$PACKAGE-$VERSION.zip
+FILE=$PACKAGE-$VERSION$PROJECT_STATE.zip
 echo $FILE
 clean
+zip $FILE "INSTALL.md"
 zip -r $FILE ./GameData/* -x ".*"
 zip -r $FILE ./PluginData/* -x ".*"
-zip -r $FILE ./INSTALL.md
 zip -d $FILE __MACOSX "**/.DS_Store"
 mv $FILE ./Archive
